@@ -1,0 +1,7 @@
+// export const MOVEUP = "MOVEUP"
+// export const MOVEDOWN = "MOVEDOWN"
+// export const MOVELEFT = "MOVELEFT"
+// export const MOVERIGHT = "MOVERIGHT"
+export const MOVE = "MOVE"
+export const ADDMAP = "ADDMAP"
+export const INITIALPOSITION = "INITIALPOSITION"
