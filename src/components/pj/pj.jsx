@@ -13,13 +13,16 @@ function PJ() {
     const dispatch = useDispatch()
     
     const  handleUserKeyPress = useCallback ( (e)=>{
-        setFuel(fuel => ( fuel > 0 ) ? fuel - 1 : fuel)
+        const resFuel = () => {
+            setFuel(fuel => ( fuel > 0 ) ? fuel - 1 : fuel)
+        }
         if(fuel > 0){
             switch(e.code){
                 case "ArrowUp":
                     let blockUp = stateMap.find( (pos) => 
                     ( pos.y === statePosition.y + 1 ) && ( pos.x === statePosition.x )  && pos.type === "block")
                     if( statePosition.y < 9 && !blockUp ){
+                        resFuel()
                         return dispatch(Move( 0, 1 ))
                     }
                     return
@@ -27,6 +30,7 @@ function PJ() {
                     let blockDown = stateMap.find( (pos) => 
                     ( pos.y === statePosition.y - 1 ) && ( pos.x === statePosition.x )  && pos.type === "block")
                     if( statePosition.y > 0 && !blockDown ){
+                        resFuel()
                         return dispatch(Move( 0, -1 ))
                     }
                     return 
@@ -34,6 +38,7 @@ function PJ() {
                     let blockLeft = stateMap.find( (pos) => 
                     ( pos.x === statePosition.x - 1 ) && ( pos.y === statePosition.y )  && pos.type === "block")
                     if( statePosition.x > 0 && !blockLeft ){
+                        resFuel()
                         return dispatch(Move( -1, 0 ))
                     }
                     return 
@@ -41,6 +46,7 @@ function PJ() {
                     let blockRight = stateMap.find( (pos) => 
                     ( pos.x === statePosition.x + 1 ) && ( pos.y === statePosition.y )  && pos.type === "block")
                     if( statePosition.x < 3 && !blockRight ){
+                        resFuel()
                         return dispatch(Move( 1, 0 ))
                     }
                     return 
@@ -56,7 +62,12 @@ function PJ() {
       }, [handleUserKeyPress]);
 
     useEffect (() => {
-        
+        stateMap.find( (pos) => {
+            if( ( pos.y === statePosition.y ) && ( pos.x === statePosition.x )  && (pos.type === "fuel" || pos.start === false) ){
+                setFuel(6)        
+            }
+        })
+
     }, [statePosition])
 
     return (

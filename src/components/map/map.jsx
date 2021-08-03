@@ -21,14 +21,18 @@ function Map() {
                       className = { styles.door }
                       key={index}
                     >
-                          { sector.start != false ? "Start" : "Exit" }
+                      { sector.start != false ? "Start" : "Exit" }
                     </div>
             case "block":
-                    return <div 
-                    className = { styles.block }
-                    key={index}
-                  />
-
+              return <div 
+                      className = { styles.block }
+                      key={index}
+                      />
+            case "fuel":
+              return <div 
+                      className = { styles.fuel }
+                      key={index}
+                      />
           }
         })
       }

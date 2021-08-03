@@ -27,3 +27,13 @@
   border: solid 1px;
   background-color: black;
 }
+
+.fuel {
+  background: no-repeat url("/images/fuel.png");
+  background-size: 20%;
+  background-position:center;
+  justify-items: center;
+  align-items: center;
+  border: solid 6px white;
+  background-color: black;
+}
